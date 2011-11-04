@@ -10,12 +10,13 @@ var Showbox = function() {
 	sbFrontColor = '#FFFFFF';
 	sbTextColor = '#000000';
 	showboxBackground = 'rgba(0, 0, 0, 0.5)';
+	sbBorderColor = sbFrontColor;
 	showboxdisplay = 'none';
 	content = "";
 	/**
 	 * @return Returns the Window Height 
 	 */
-	windowHeight = function(win) {
+	var windowHeight = function(win) {
 		if(win == undefined) win = window;
 		if (win.innerHeight)   
 			return win.innerHeight;   
@@ -27,7 +28,7 @@ var Showbox = function() {
 	/**
 	 * @return Returns the Window Width
 	 */
-	windowWidth = function() {
+	var windowWidth = function() {
 		if (window.innerWidth)
 			return window.innerWidth;
 		else if (document.body && document.body.offsetWidth)
@@ -38,19 +39,20 @@ var Showbox = function() {
 	/*
 	 * Removes the 'px' in a string an returns the number
 	 */
-	pxToNum = function(str) {
+	var pxToNum = function(str) {
 		str = str.replace(' ', '').replace('px', '');
 		str *= 1;
 		return str;
 	};
 	// SHOWBOX FUCNTIONS
-	init = function(vars){
+	var init = function(vars){
 		if(vars) {
 			if(vars.showboxPadding) this.showboxPadding = vars.showboxPadding;
 			if(vars.showboxMinTop) this.showboxMinTop = vars.showboxMinTop;
 			if(vars.sbFrontColor) this.sbFrontColor = vars.sbFrontColor;
 			if(vars.sbTextColor) this.sbTextColor = vars.sbTextColor;
 			if(vars.showboxBackground) this.showboxBackground = vars.showboxBackground;
+			if(vars.showboxBorderColor) this.sbBorderColor = vars.showboxBorderColor;
 		}
 		
 		var FWidth  = this.windowWidth();
@@ -103,6 +105,7 @@ var Showbox = function() {
 		el.media = 'screen';
 		var str  = '';
 		str     += '#Showbox, #Showbox *{color:'+this.sbTextColor+'}';
+		str     += '#Showbox{border:1px solid '+sbBorderColor+';-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:0 0 15px #333;-webkit-box-shadow:0 0 15px #333;box-shadow:0 0 15px #333;}';
 		str     += '.ShowboxFadein{-moz-animation-duration:1s;-moz-animation-name:showbox_fadein;-webkit-animation-duration:1s;-webkit-animation-name:showbox_fadein;}';
 		str     += '@-moz-keyframes showbox_fadein {from {background:rgba(0,0,0,0.0);color:rgba(0,0,0,0.0);}}';
 		str     += '@-webkit-keyframes showbox_fadein {0% {background:rgba(0,0,0,0.0);color:rgba(0,0,0,0.0);}}';
@@ -112,7 +115,7 @@ var Showbox = function() {
 
 		this.resize();
 	};
-	toggle = function() {
+	var toggle = function() {
 		this.showboxdisplay = this.showboxdisplay == 'none' ? 'block' : 'none';
 		if(this.showboxdisplay == 'block') {
 			this.show();
@@ -120,7 +123,7 @@ var Showbox = function() {
 			this.hide();
 		}
 	};
-	show = function(url, sync) {
+	var show = function(url, sync) {
 		if(url && url.length > 0) {
 			if(sync != null && sync) {
 				this.setText(this.getText(url));
@@ -135,7 +138,7 @@ var Showbox = function() {
 		showboxcontent.className	 = 'ShowboxFadein';
 		this.resize();
 	};
-	hide = function() {
+	var hide = function() {
 		var showbox         = document.getElementById('ShowboxBG');
 		var showboxcontent  = document.getElementById('Showbox');
 		this.showboxdisplay = 'none';
@@ -144,11 +147,11 @@ var Showbox = function() {
 		showbox.style.display    = this.showboxdisplay;
 		showboxcontent.style.display = this.showboxdisplay;
 	};
-	setText = function(text) {
+	var setText = function(text) {
 		document.getElementById('Showbox').innerHTML = text;
 		this.resize();
 	};
-	resize = function() {
+	var resize = function() {
 		var FWidth  = this.windowWidth();
 		var FHeight = this.windowHeight();
 
@@ -177,7 +180,7 @@ var Showbox = function() {
 	/*
 	 * AJAX Functions
 	 */
-	getText:function(url) {
+	var getText = function(url) {
 		if (window.XMLHttpRequest)
 			request = new XMLHttpRequest();
 		else
@@ -188,7 +191,7 @@ var Showbox = function() {
 			return request.responseText;
 		} else return false;
 	};
-	setTextAsync:function(url) {
+	var setTextAsync = function(url) {
 		this.setText("LADE...");
 		if (window.XMLHttpRequest)
 			request = new XMLHttpRequest();
@@ -205,6 +208,14 @@ var Showbox = function() {
 		} else return false;
 	};
 	return {
+		showboxPadding:showboxPadding,
+		showboxMinTop:showboxMinTop,
+		sbFrontColor:sbFrontColor,
+		sbTextColor:sbTextColor,
+		showboxBackground:showboxBackground,
+		sbBorderColor:sbBorderColor,
+		showboxdisplay:showboxdisplay,
+		content:content,
 		windowHeight:windowHeight,
 		windowWidth:windowWidth,
 		pxToNum:pxToNum,
@@ -217,4 +228,4 @@ var Showbox = function() {
 		getText:getText,
 		setTextAsync:setTextAsync
 	};
-}
+}();
