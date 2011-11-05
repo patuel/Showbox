@@ -47,12 +47,12 @@ var Showbox = function() {
 	// SHOWBOX FUCNTIONS
 	var init = function(vars){
 		if(vars) {
-			if(vars.showboxPadding) this.showboxPadding = vars.showboxPadding;
-			if(vars.showboxMinTop) this.showboxMinTop = vars.showboxMinTop;
-			if(vars.sbFrontColor) this.sbFrontColor = vars.sbFrontColor;
-			if(vars.sbTextColor) this.sbTextColor = vars.sbTextColor;
-			if(vars.showboxBackground) this.showboxBackground = vars.showboxBackground;
-			if(vars.showboxBorderColor) this.sbBorderColor = vars.showboxBorderColor;
+			if(vars.padding) this.showboxPadding = vars.padding;
+			if(vars.minTop) this.showboxMinTop = vars.minTop;
+			if(vars.sbBackground) this.sbFrontColor = vars.sbBackground;
+			if(vars.sbForeground) this.sbTextColor = vars.sbForeground;
+			if(vars.background) this.showboxBackground = vars.background;
+			if(vars.borderColor) this.sbBorderColor = vars.borderColor;
 		}
 		
 		var FWidth  = this.windowWidth();
@@ -191,6 +191,9 @@ var Showbox = function() {
 			return request.responseText;
 		} else return false;
 	};
+	var setTextSync = function(url) {
+		this.setText(this.getText(url));
+	};
 	var setTextAsync = function(url) {
 		this.setText("LADE...");
 		if (window.XMLHttpRequest)
@@ -226,6 +229,7 @@ var Showbox = function() {
 		setText:setText,
 		resize:resize,
 		getText:getText,
+		setTextSync:setTextSync,
 		setTextAsync:setTextAsync
 	};
 }();

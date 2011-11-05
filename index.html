@@ -6,20 +6,119 @@
   <script type="text/javascript">
   	function init() {
   		Showbox.init({
-  			showboxBorderColor:'rgba(0,0,0,0)'
+  			showboxBorderColor:'rgba(0,0,0,0)',
+  			background:'rgba(50, 50, 50, 0.6)'
   		});
   	}
   </script>
   <style type="text/css">
+  	html, body {
+  	}
     body {
-        
+    	background-image: -moz-radial-gradient(50% 0%, circle cover, #3cb1b1, #339999), url(noise.png);
+    }
+    
+    .Container {
+    	width: 100%;
+    	text-align: center;
+    }
+    
+    .Content {
+    	width: 700px;
+    	margin: auto;
+    	border: 2px solid #fff;
+    	border-radius: 5px;
+    	margin-top: 50px;
+    }
+    
+    h1 {
+    	padding: 10px;
+    	background: rgba(0,0,0, 0.2);
+    	border-bottom: 1px solid rgba(200,200,200, 0.2);
+    	margin: 0;
+    }
+    
+    .underH1 {
+    	border-top: 1px solid rgba(200,200,200, 0.8);
+    }
+    
+    .roundedLeft, .roundedRight, .roundedMiddle {
+    	padding: 7px 10px;
+    	background: -moz-linear-gradient(top, rgba(100, 100, 100, 0.2), rgba(60, 177, 177, 0.6));
+    	margin: 0;
+    	color: #000;
+    	text-decoration: none;
+    }
+    
+    .roundedLeft:hover, .roundedRight:hover, .roundedMiddle:hover {
+    	background: -moz-linear-gradient(top, rgba(100, 100, 100, 0.2), rgba(46, 137, 137, 1));
+    }
+    
+    .roundedLeft {
+    	border: 1px solid rgba(200,200,200, 0.2);
+    	border-right: 1px solid rgba(0,0,0, 0.4);
+    	border-radius: 5px 0 0 5px;
+    }
+    
+    .roundedRight {
+    	border: 1px solid rgba(200,200,200, 0.2);
+    	border-left: 1px solid rgba(200,200,200, 0.7);
+    	border-radius: 0 5px 5px 0;
+    }
+    
+    .roundedMiddle {
+    	border: 1px solid rgba(200,200,200, 0.2);
+    	border-left: 1px solid rgba(200,200,200, 0.7);
+    	border-right: 1px solid rgba(0,0,0, 0.4);
+    }
+    
+    h1, h2 {
+    	color: #fff;
+    	text-shadow: 0 -1px 1px #000, 0 0 1px #fff;
+    }
+    
+    hr {
+    	margin-top: 30px;
+    	border: none;
+    	border: 1px inset rgba(46, 137, 137, 1);
+    }
+    
+    .Markup {
+    	padding: 20px;
+    	margin: 20px 50px;
+    	border: 1px dashed #006666;
+    	background: #3CB1B1;
+    }
+    
+    .Markup .Comment {
+    	color: #003333;
     }
   </style>
 </head>
 <body onload="init();">
-    <h1>Showbox v2</h1>
-    <h4>by <a href="http://paeterick.de" target="_BLANK">Patrick Schmidt</a></h4>
-    <h4>Klicke <a href="javascript: Showbox.show('ajax.html');">HIER</a> zum anzeigen der Showbox</h4>
-    <h4>Klicke <a href="ShowboxV2.zip">hier</a> zum Herunterladen der .js Datei</h4>
+    <div class="Container">
+    	<div class="Content">
+		    <h1>Showbox v2</h1>
+		    <div class="underH1"></div>
+	    	<h4>by<br/ ><a href="http://paeterick.de" target="_BLANK">Patrick Schmidt</a></h4>
+	    	<h2>Beispiele</h2>
+	    	<div class="exampleLinks">
+	    		<a href="content_a.html" onclick="Showbox.show(this.href, true);return false;" class="roundedLeft">Text mit link</a><a href="content_b.html" onclick="Showbox.show(this.href, true);return false;" class="roundedRight">Hallo Welt</a>
+	    	</div>
+		    <hr />
+		    <br />
+		    <br />
+		    <u>Was man braucht:</u><br />
+		    <br />
+		    <a href="showbox2.min.js">showbox2.min.js</a>
+		    <br />
+		    und ein bisschen HTML:
+		    <div class="Markup">
+		    	&lt;script type=&quot;text/javascript&quot; src=&quot;showbox2.src.js&quot;&gt;&lt;/script&gt;<br />
+		    	&lt;body onload=&quot;Showbox.init();&quot;&gt;
+		    </div>
+		    damit w&auml;re die &quot;Showbox&quot; initialisiert und kann verwendet werden.<br />
+    	</div>
+    </div>
 </body>
 </html>
